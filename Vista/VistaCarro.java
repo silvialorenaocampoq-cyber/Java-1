@@ -1,6 +1,6 @@
 package Vista;
 
-import Carro.carro_modelo;
+import modelo.carro_modelo;
 import java.util.Scanner;
 
 public class VistaCarro {

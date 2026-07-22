@@ -1,6 +1,6 @@
 package Vista;
 
-import Motor.motor_modelo;
+import modelo.motor_modelo;
 import java.util.Scanner;
 
 public class VistaMotor {

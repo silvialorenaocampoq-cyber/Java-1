@@ -1,4 +1,4 @@
-package Carro;
+package modelo;
 
 public class carro_modelo {
 

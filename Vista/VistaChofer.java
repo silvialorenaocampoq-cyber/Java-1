@@ -1,6 +1,6 @@
 package Vista;
 
-import Chofer.chofer_modelo;
+import modelo.chofer_modelo;
 import java.util.Scanner;
 
 public class VistaChofer {

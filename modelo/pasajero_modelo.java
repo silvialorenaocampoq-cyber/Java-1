@@ -1,4 +1,4 @@
-package Pasajero;
+package modelo;
 
 public class pasajero_modelo {
 

@@ -1,4 +1,4 @@
-package Chofer;
+package modelo;
 
 public class chofer_modelo {
 

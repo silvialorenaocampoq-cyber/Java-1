@@ -1,6 +1,6 @@
 package Vista;
 
-import Pasajero.pasajero_modelo;
+import modelo.pasajero_modelo;
 import java.util.Scanner;
 
 public class VistaPasajero {

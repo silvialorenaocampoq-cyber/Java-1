@@ -1,4 +1,4 @@
-package Motor;
+package modelo;
 
 public class motor_modelo {
 
