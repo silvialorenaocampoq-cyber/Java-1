@@ -7,9 +7,9 @@ public class pasajero_modelo {
     private String apellido   = "";
 
     public pasajero_modelo(String nro_cedula, String nombre, String apellido) {
-        setCedula_pasajero(nro_cedula);
-        setnombre(nombre);
-        setapellido(apellido);
+        this.nro_cedula = nro_cedula;
+        this.nombre     = nombre;
+        this.apellido   = apellido;
     }
 
     // Getters
@@ -17,31 +17,12 @@ public class pasajero_modelo {
     public String getnombre()          { return nombre; }
     public String getapelido()         { return apellido; }
 
-    // Setters con validacion
-    public void setCedula_pasajero(String cedula) {
-        if (cedula == null || cedula.trim().isEmpty())
-            throw new IllegalArgumentException("La cédula del pasajero no puede estar vacía.");
-        if (!cedula.trim().matches("\\d{8,10}"))
-            throw new IllegalArgumentException("La cédula debe contener entre 8 y 10 dígitos.");
-        this.nro_cedula = cedula.trim();
-    }
+    // Setters
+    public void setCedula_pasajero(String cedula) { this.nro_cedula = cedula; }
+    public void setnombre(String nombre)          { this.nombre = nombre; }
+    public void setapellido(String apellido)      { this.apellido = apellido; }
 
-    public void setnombre(String nombre) {
-        if (nombre == null || nombre.trim().isEmpty())
-            throw new IllegalArgumentException("El nombre del pasajero no puede estar vacío.");
-        if (!nombre.trim().matches("[A-Za-záéíóúÁÉÍÓÚñÑ ]+"))
-            throw new IllegalArgumentException("El nombre solo puede contener letras.");
-        this.nombre = nombre.trim();
-    }
-
-    public void setapellido(String apellido) {
-        if (apellido == null || apellido.trim().isEmpty())
-            throw new IllegalArgumentException("El apellido del pasajero no puede estar vacío.");
-        if (!apellido.trim().matches("[A-Za-záéíóúÁÉÍÓÚñÑ ]+"))
-            throw new IllegalArgumentException("El apellido solo puede contener letras.");
-        this.apellido = apellido.trim();
-    }
-
+    // Reglas de negocio
     public boolean esValido() {
         return !nro_cedula.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty();
     }
@@ -52,6 +33,6 @@ public class pasajero_modelo {
 
     @Override
     public String toString() {
-        return "Cédula: " + nro_cedula + " | Nombre: " + getNombreCompleto();
+        return "Cedula: " + nro_cedula + " | Nombre: " + getNombreCompleto();
     }
 }
