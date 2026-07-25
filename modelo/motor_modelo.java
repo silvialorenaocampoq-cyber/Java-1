@@ -31,7 +31,6 @@ public class motor_modelo {
             || tipo.equals("gas natural");
     }
 
-    @Override
     public String toString() {
         return "Num. Serie: " + num_serie + " | Tipo: " + tipo_motor;
     }

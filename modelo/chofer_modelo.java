@@ -37,7 +37,6 @@ public class chofer_modelo {
         return nombre_chofer + " " + apellido_chofer;
     }
 
-    @Override
     public String toString() {
         return "Cedula: " + cedula_chofer + " | Nombre: " + getNombreCompleto()
              + " | Licencia: " + licencia;

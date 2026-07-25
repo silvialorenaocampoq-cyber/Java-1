@@ -31,7 +31,6 @@ public class carro_modelo {
         return placa.matches("[A-Z]{3}-?\\d{3,4}");
     }
 
-    @Override
     public String toString() {
         return "Placa: " + placa + " | Marca: " + marca + " | Modelo: " + modelo;
     }

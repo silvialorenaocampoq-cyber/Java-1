@@ -31,7 +31,6 @@ public class pasajero_modelo {
         return nombre + " " + apellido;
     }
 
-    @Override
     public String toString() {
         return "Cedula: " + nro_cedula + " | Nombre: " + getNombreCompleto();
     }
