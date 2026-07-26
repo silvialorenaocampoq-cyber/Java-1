@@ -18,17 +18,23 @@ public class motor_modelo {
     public void setNum_serie(String num_serie)   { this.num_serie = num_serie; }
     public void setTipo_motor(String tipo_motor) { this.tipo_motor = tipo_motor; }
 
-    // Reglas de negocio
-    public boolean esValido() {
-        return !num_serie.isEmpty() && !tipo_motor.isEmpty();
+    // Reglas de validacion del modelo
+    public static String validarNumSerie(String num_serie) {
+        if (num_serie == null || num_serie.trim().isEmpty())
+            return "El numero de serie no puede estar vacio.";
+        if (num_serie.trim().length() < 4)
+            return "El numero de serie debe tener al menos 4 caracteres.";
+        return null;
     }
 
-    public boolean esTipoMotorPermitido() {
-        String tipo = tipo_motor.toLowerCase()
-            .replace("é", "e").replace("í", "i");
-        return tipo.equals("gasolina") || tipo.equals("diesel")
-            || tipo.equals("electrico") || tipo.equals("hibrido")
-            || tipo.equals("gas natural");
+    public static String validarTipo(String tipo) {
+        if (tipo == null || tipo.trim().isEmpty())
+            return "Debe seleccionar una opcion de tipo de motor entre [1-5].";
+        return null;
+    }
+
+    public boolean esValido() {
+        return !num_serie.isEmpty() && !tipo_motor.isEmpty();
     }
 
     public String toString() {

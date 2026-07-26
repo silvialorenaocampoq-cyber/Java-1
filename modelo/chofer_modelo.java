@@ -27,7 +27,39 @@ public class chofer_modelo {
     public void setApellido_chofer(String apellido_chofer) { this.apellido_chofer = apellido_chofer; }
     public void setLicencia(String licencia)               { this.licencia = licencia; }
 
-    // Reglas de negocio
+    // Reglas de validacion del modelo
+    public static String validarCedula(String cedula) {
+        if (cedula == null || cedula.trim().isEmpty())
+            return "La cedula no puede estar vacia.";
+        if (!cedula.trim().matches("\\d{6,12}"))
+            return "La cedula debe contener solo digitos (6-12).";
+        return null;
+    }
+
+    public static String validarNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty())
+            return "El nombre no puede estar vacio.";
+        if (!nombre.trim().matches("[A-Za-záéíóúÁÉÍÓÚñÑ ]+"))
+            return "El nombre solo puede contener letras.";
+        return null;
+    }
+
+    public static String validarApellido(String apellido) {
+        if (apellido == null || apellido.trim().isEmpty())
+            return "El apellido no puede estar vacio.";
+        if (!apellido.trim().matches("[A-Za-záéíóúÁÉÍÓÚñÑ ]+"))
+            return "El apellido solo puede contener letras.";
+        return null;
+    }
+
+    public static String validarLicencia(String licencia) {
+        if (licencia == null || licencia.trim().isEmpty())
+            return "La licencia no puede estar vacia.";
+        if (licencia.trim().length() < 5)
+            return "La licencia debe tener al menos 5 caracteres.";
+        return null;
+    }
+
     public boolean esValido() {
         return !cedula_chofer.isEmpty() && !nombre_chofer.isEmpty()
             && !apellido_chofer.isEmpty() && !licencia.isEmpty();

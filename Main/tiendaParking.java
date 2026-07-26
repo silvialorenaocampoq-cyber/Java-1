@@ -7,7 +7,6 @@ public class tiendaParking {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         System.out.println("SISTEMA DE REGISTRO - TIENDA PARKING");
 
         controlador_general ctrl = new controlador_general(sc);
@@ -16,7 +15,7 @@ public class tiendaParking {
         ctrl.registrarChofer();
         ctrl.registrarPasajero();
 
-        System.out.println("Fin");
+        System.out.println("Registro completado.");
         sc.close();
     }
 }

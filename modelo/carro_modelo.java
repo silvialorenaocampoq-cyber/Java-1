@@ -22,13 +22,29 @@ public class carro_modelo {
     public void setMarca(String marca)   { this.marca = marca; }
     public void setModelo(String modelo) { this.modelo = modelo; }
 
-    // Reglas de negocio
-    public boolean esValido() {
-        return !placa.isEmpty() && !marca.isEmpty() && !modelo.isEmpty();
+    // Reglas de validacion del modelo
+    public static String validarPlaca(String placa) {
+        if (placa == null || placa.trim().isEmpty())
+            return "La placa no puede estar vacia.";
+        if (!placa.trim().matches("[A-Za-z0-9\\-]{3,10}"))
+            return "La placa debe ser alfanumerica y tener entre 3 y 10 caracteres.";
+        return null;
     }
 
-    public boolean tieneFormatoPlacaValido() {
-        return placa.matches("[A-Z]{3}-?\\d{3,4}");
+    public static String validarMarca(String marca) {
+        if (marca == null || marca.trim().isEmpty())
+            return "La marca no puede estar vacia.";
+        return null;
+    }
+
+    public static String validarModelo(String modelo) {
+        if (modelo == null || modelo.trim().isEmpty())
+            return "El modelo no puede estar vacio.";
+        return null;
+    }
+
+    public boolean esValido() {
+        return !placa.isEmpty() && !marca.isEmpty() && !modelo.isEmpty();
     }
 
     public String toString() {

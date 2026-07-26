@@ -22,7 +22,31 @@ public class pasajero_modelo {
     public void setnombre(String nombre)          { this.nombre = nombre; }
     public void setapellido(String apellido)      { this.apellido = apellido; }
 
-    // Reglas de negocio
+    // Reglas de validacion del modelo
+    public static String validarCedula(String cedula) {
+        if (cedula == null || cedula.trim().isEmpty())
+            return "La cedula no puede estar vacia.";
+        if (!cedula.trim().matches("\\d{6,12}"))
+            return "La cedula debe contener solo digitos (6-12).";
+        return null;
+    }
+
+    public static String validarNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty())
+            return "El nombre no puede estar vacio.";
+        if (!nombre.trim().matches("[A-Za-záéíóúÁÉÍÓÚñÑ ]+"))
+            return "El nombre solo puede contener letras.";
+        return null;
+    }
+
+    public static String validarApellido(String apellido) {
+        if (apellido == null || apellido.trim().isEmpty())
+            return "El apellido no puede estar vacio.";
+        if (!apellido.trim().matches("[A-Za-záéíóúÁÉÍÓÚñÑ ]+"))
+            return "El apellido solo puede contener letras.";
+        return null;
+    }
+
     public boolean esValido() {
         return !nro_cedula.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty();
     }
