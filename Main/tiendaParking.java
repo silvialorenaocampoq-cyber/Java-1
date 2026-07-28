@@ -10,12 +10,16 @@ public class tiendaParking {
         System.out.println("SISTEMA DE REGISTRO - TIENDA PARKING");
 
         controlador_general ctrl = new controlador_general(sc);
+
         ctrl.registrarCarro();
         ctrl.registrarMotor();
         ctrl.registrarChofer();
         ctrl.registrarPasajero();
 
-        System.out.println("Registro completado.");
+        System.out.println("\n--- DATOS REGISTRADOS ---");
+        ctrl.verTodo();
+
+        System.out.println("Fin del programa.");
         sc.close();
     }
 }

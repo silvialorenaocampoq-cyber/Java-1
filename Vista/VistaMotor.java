@@ -30,6 +30,11 @@ public class VistaMotor {
         }
     }
 
+    public static String pedirCilindrada(Scanner sc) {
+        System.out.print("  Cilindrada  : ");
+        return sc.nextLine().trim();
+    }
+
     public static void encabezado() {
         System.out.println("DATOS DEL MOTOR");
     }

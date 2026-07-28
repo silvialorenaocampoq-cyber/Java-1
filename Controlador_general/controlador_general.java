@@ -1,5 +1,6 @@
 package Controlador_general;
 
+import modelo.api_modelo;
 import modelo.carro_modelo;
 import modelo.chofer_modelo;
 import modelo.motor_modelo;
@@ -13,12 +14,21 @@ import java.util.Scanner;
 public class controlador_general {
 
     private Scanner sc;
+    private api_modelo api;
 
     public controlador_general(Scanner sc) {
-        this.sc = sc;
+        this.sc  = sc;
+        this.api = new api_modelo("http://localhost", "admin", "12345");
+
+        if (api.validar_conexion()) {
+            System.out.println("Conexion a la API establecida.");
+        } else {
+            System.out.println("Error de conexion a la API.");
+        }
     }
 
-    public carro_modelo registrarCarro() {
+    // ── CARRO ────────────────────────────────────────────────────
+    public void registrarCarro() {
         VistaCarro.encabezado();
         String placa, marca, modelo, error;
 
@@ -40,12 +50,14 @@ public class controlador_general {
             if (error != null) System.out.println("  >> " + error);
         } while (error != null);
 
-        return new carro_modelo(placa, marca, modelo);
+        carro_modelo obj = new carro_modelo(placa, marca, modelo);
+        api.agregar_carro(obj);
     }
 
-    public motor_modelo registrarMotor() {
+    // ── MOTOR ────────────────────────────────────────────────────
+    public void registrarMotor() {
         VistaMotor.encabezado();
-        String numSerie, tipo, error;
+        String numSerie, tipo, cilindrada, error;
 
         do {
             numSerie = VistaMotor.pedirNumSerie(sc);
@@ -59,10 +71,18 @@ public class controlador_general {
             if (error != null) System.out.println("  >> " + error);
         } while (error != null);
 
-        return new motor_modelo(numSerie, tipo);
+        do {
+            cilindrada = VistaMotor.pedirCilindrada(sc);
+            error = motor_modelo.validarCilindrada(cilindrada);
+            if (error != null) System.out.println("  >> " + error);
+        } while (error != null);
+
+        motor_modelo obj = new motor_modelo(numSerie, tipo, cilindrada);
+        api.agregar_motor(obj);
     }
 
-    public chofer_modelo registrarChofer() {
+    // ── CHOFER ───────────────────────────────────────────────────
+    public void registrarChofer() {
         VistaChofer.encabezado();
         String cedula, nombre, apellido, licencia, error;
 
@@ -90,10 +110,12 @@ public class controlador_general {
             if (error != null) System.out.println("  >> " + error);
         } while (error != null);
 
-        return new chofer_modelo(cedula, nombre, apellido, licencia);
+        chofer_modelo obj = new chofer_modelo(cedula, nombre, apellido, licencia);
+        api.agregar_chofer(obj);
     }
 
-    public pasajero_modelo registrarPasajero() {
+    // ── PASAJERO ─────────────────────────────────────────────────
+    public void registrarPasajero() {
         VistaPasajero.encabezado();
         String cedula, nombre, apellido, error;
 
@@ -115,6 +137,15 @@ public class controlador_general {
             if (error != null) System.out.println("  >> " + error);
         } while (error != null);
 
-        return new pasajero_modelo(cedula, nombre, apellido);
+        pasajero_modelo obj = new pasajero_modelo(cedula, nombre, apellido);
+        api.agregar_pasajero(obj);
+    }
+
+    // ── VER DATOS ALMACENADOS ────────────────────────────────────
+    public void verTodo() {
+        api.ver_carros();
+        api.ver_motores();
+        api.ver_choferes();
+        api.ver_pasajeros();
     }
 }

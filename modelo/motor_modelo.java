@@ -2,23 +2,27 @@ package modelo;
 
 public class motor_modelo {
 
-    private String num_serie  = "";
-    private String tipo_motor = "";
+    private String num_serie   = "";
+    private String tipo_motor  = "";
+    private String cilindrada  = "";
 
-    public motor_modelo(String num_serie, String tipo_motor) {
+    public motor_modelo(String num_serie, String tipo_motor, String cilindrada) {
         this.num_serie  = num_serie;
         this.tipo_motor = tipo_motor;
+        this.cilindrada = cilindrada;
     }
 
     // Getters
-    public String getNum_serie()  { return num_serie; }
-    public String getTipo_motor() { return tipo_motor; }
+    public String getNum_serie()   { return num_serie; }
+    public String getTipo_motor()  { return tipo_motor; }
+    public String getCilindrada()  { return cilindrada; }
 
     // Setters
-    public void setNum_serie(String num_serie)   { this.num_serie = num_serie; }
-    public void setTipo_motor(String tipo_motor) { this.tipo_motor = tipo_motor; }
+    public void setNum_serie(String num_serie)    { this.num_serie = num_serie; }
+    public void setTipo_motor(String tipo_motor)  { this.tipo_motor = tipo_motor; }
+    public void setCilindrada(String cilindrada)  { this.cilindrada = cilindrada; }
 
-    // Reglas de validacion del modelo
+    // Validaciones
     public static String validarNumSerie(String num_serie) {
         if (num_serie == null || num_serie.trim().isEmpty())
             return "El numero de serie no puede estar vacio.";
@@ -33,11 +37,17 @@ public class motor_modelo {
         return null;
     }
 
+    public static String validarCilindrada(String cilindrada) {
+        if (cilindrada == null || cilindrada.trim().isEmpty())
+            return "La cilindrada no puede estar vacia.";
+        return null;
+    }
+
     public boolean esValido() {
-        return !num_serie.isEmpty() && !tipo_motor.isEmpty();
+        return !num_serie.isEmpty() && !tipo_motor.isEmpty() && !cilindrada.isEmpty();
     }
 
     public String toString() {
-        return "Num. Serie: " + num_serie + " | Tipo: " + tipo_motor;
+        return "Serie: " + num_serie + " | Tipo: " + tipo_motor + " | Cilindrada: " + cilindrada;
     }
 }
